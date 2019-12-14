@@ -1,9 +1,10 @@
 /**
+ *  Server
  *  EE5400
  *  Java Socket Programming
  *  Simple Job Server
- *  By Dr. Yi Zhao. Edited by team
- */
+ *  By Dr. Yi Zhao
+ **/
 
 import java.io.*;
 import java.net.*;
