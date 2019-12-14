@@ -97,7 +97,7 @@ final class SimpleJobServerThread extends Thread {
             // for client requesting job
             if (token[0].equals("requestJob")) {
                 int job = this.manager.assignJob();
-                if (job > 0)
+                if (job > -1)
                     outputLine = "assignJob " + Integer.toString(job) + " " + this.manager.getJobEntry(job);
                 else {
                     sleep(1000);
@@ -107,20 +107,23 @@ final class SimpleJobServerThread extends Thread {
             // for client submitting job
             else
             {
-                int job = Integer.parseInt(token[1]);
+                int jobIndex = Integer.parseInt(token[1]);
                 double result = Double.parseDouble(token[2]);
                 
                 // reject if not within margin
                 if ((result - 1) > acceptMargin) {
-                    this.manager.rejectJob(job);
-                    outputLine = "rejectJob " + job;
+                    this.manager.rejectJob(jobIndex);
+
+                    outputLine = "rejectJob " + jobIndex;
                 }
+                // else accept job
                 else {
-                    // else accept job
-                    this.manager.finishJob(job);
+                    this.manager.finishJob(jobIndex);
+
                     if (this.manager.finished() == 10)
                         clientDone = true;
-                    outputLine = "acceptJob " + job;
+
+                    outputLine = "acceptJob " + jobIndex;
                 }
             }
 
@@ -181,7 +184,7 @@ final class SimpleJobManager {
 
     public boolean rejectJob(int jobIndex) {
         jobState[jobIndex] = JobState.JS_READY;
-        assignedJobs--;
+        // assignedJobs--;
         return true;
     }
 
