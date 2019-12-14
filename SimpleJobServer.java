@@ -97,7 +97,7 @@ final class SimpleJobServerThread extends Thread {
             // for client requesting job
             if (token[0].equals("requestJob")) {
                 int job = this.manager.assignJob();
-                if (job < 0)
+                if (job > 0)
                     outputLine = "assignJob " + Integer.toString(job) + " " + this.manager.getJobEntry(job);
                 else {
                     sleep(1000);
@@ -118,6 +118,8 @@ final class SimpleJobServerThread extends Thread {
                 else {
                     // else accept job
                     this.manager.finishJob(job);
+                    if (this.manager.finished() == 10)
+                        clientDone = true;
                     outputLine = "acceptJob " + job;
                 }
             }
