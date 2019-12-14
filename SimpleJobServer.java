@@ -2,7 +2,7 @@
  *  EE5400
  *  Java Socket Programming
  *  Simple Job Server
- *  By Dr. Yi Zhao
+ *  By Dr. Yi Zhao. Edited by team
  */
 
 import java.io.*;
