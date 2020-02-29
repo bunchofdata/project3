@@ -1,5 +1,4 @@
 /** Client
- *  EE5400
  *  Java Socket Programming
  *  Simple Job Client
  **/
