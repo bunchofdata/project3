@@ -2,7 +2,6 @@
  *  EE5400
  *  Java Socket Programming
  *  Simple Job Client
- *  By Dr. Yi Zhao. Edited by team
  **/
 
 import java.io.*;
